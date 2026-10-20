@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Vetement } from '../model/vetement.model';
 import { Tyype } from '../model/type.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -62,4 +63,14 @@ export class VetementService {
      consulterType(id: number): Tyype {
     return this.types.find(t => t.idType == id)!;
   }
+  
+ 
+
+  rechercherParType(idType: number): Vetement[] {
+
+    return this.vetements.filter(
+      v => v.type.idType == idType
+    );
   }
+}
+  

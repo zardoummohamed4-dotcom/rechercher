@@ -1,0 +1,103 @@
+<div class="container">
+
+  <h2 class="mt-4 mb-4">
+    Recherche par Nom
+  </h2>
+  
+ <form class="form-inline">
+
+    <div class="form-group mx-sm-3 mb-2 mt-2">
+
+      <label>Nom Vêtement</label>
+
+      <input
+        #nom
+        [(ngModel)]="searchTerm"
+        name="searchTerm"
+        class="form-control"
+        placeholder="Rechercher..."
+      >
+
+    </div>
+
+  </form>
+
+ <!--  <form class="form-inline">
+
+    <div class="form-group mx-sm-3 mb-2 mt-2">
+
+      <label>Nom Vêtement</label>
+
+      <input
+        class="form-control"
+        #searchTerm
+        (keyup)="onKeyUp(searchTerm.value)"
+        placeholder="Rechercher..."
+      >
+
+    </div>
+
+  </form> -->
+
+
+  <div class="card shadow mb-4">
+
+    <div class="card-body">
+
+      <table class="table table-striped">
+
+        <thead>
+
+          <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Prix</th>
+            <th>Taille</th>
+            <th>Couleur</th>
+            <th>Date Création</th>
+            <th>Type</th>
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          @for (
+            vetement of vetements | searchFilter: searchTerm;
+            track vetement.idVetement
+          ) {
+
+            <tr>
+
+              <td>{{ vetement.idVetement }}</td>
+
+              <td>{{ vetement.nomVetement }}</td>
+
+              <td>{{ vetement.prixVetement }}</td>
+
+              <td>{{ vetement.taille }}</td>
+
+              <td>{{ vetement.couleur }}</td>
+
+              <td>
+                {{ vetement.dateCreation | date:'dd/MM/yyyy' }}
+              </td>
+
+              <td>
+                {{ vetement.type.nomType }}
+              </td>
+
+            </tr>
+
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

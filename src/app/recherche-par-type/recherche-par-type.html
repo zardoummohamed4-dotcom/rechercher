@@ -1,0 +1,88 @@
+<div class="container">
+
+  <h2 class="mt-4 mb-4">Recherche par Type</h2>
+
+  <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+
+    <label>Types</label>
+
+    <select 
+      class="form-control form-control-lg"
+      id="idType"
+      name="idType"
+      [(ngModel)]="idType"
+      (change)="onChange()">
+
+      @for (type of types; track type.idType) {
+
+        <option [value]="type.idType">
+          {{ type.nomType }}
+        </option>
+
+      }
+
+    </select>
+
+  </div>
+
+
+  <div class="card shadow mb-4">
+
+    <div class="card-body">
+
+      <table class="table table-striped">
+
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Prix</th>
+            <th>Taille</th>
+            <th>Couleur</th>
+            <th>Date Création</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          @for (vetement of vetements; track vetement.idVetement) {
+
+            <tr>
+
+              <td>{{ vetement.idVetement }}</td>
+
+              <td>{{ vetement.nomVetement }}</td>
+
+              <td>{{ vetement.prixVetement }}</td>
+
+              <td>{{ vetement.taille }}</td>
+
+              <td>{{ vetement.couleur }}</td>
+
+              <td>
+                {{ vetement.dateCreation | date:'dd/MM/yyyy' }}
+              </td>
+
+              <td>
+                @if (vetement.type) {
+                  {{ vetement.type.nomType }}
+                }
+                @else {
+                  PAS DE TYPE
+                }
+              </td>
+
+            </tr>
+
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
